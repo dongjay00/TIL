@@ -69,16 +69,31 @@ $ git status
 
 - 로컬 저장소와 원격 저장소를 연결하는 일입니다.
 
-- ```sh
-  $ git remote add origin { github repo url }
-  ```
+
+```sh
+$ git remote add origin { github repo url }
+```
 
 - 원격 저장소(remote)를 등록할건데, `origin` 이라는 이름으로 원격 저장소를 등록하겠다라는 의미입니다.
 
 - 원격 저장소 등록 현황을 확인하려면 아래의 명령어를 참고하세요.
 
-  ```sh
-  $ git
-  ```
 
-  
+```sh
+$ git remote -v
+```
+
+- 등록된 원격 저장소를 삭제하려면 아래의 명령어를 참고하세요.
+
+```sh
+$ git remote rm { 삭제하고자 하는 remote name }
+```
+
+### 3. 원격 저장소에 업로드
+
+아래의 명령어를 통해 원격 저장소에 commit된 코드를 업로드할 수 있습니다.
+
+```sh
+$ git push origin master
+```
+
