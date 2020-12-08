@@ -171,3 +171,132 @@
   - 붕어빵을 실제로 채움 (팥붕어빵? 크림붕어빵? 피자붕어빵?)
   - instance of a class / created many times / data in
   - 메모리에 올라감
+
+
+
+
+
+## 13. Getter & Setter
+
+> 가령, 사용자가 나이를 -1로 설정한다면...이게 말이 되나요?
+>
+> 클래스를 사용자가 바보같이 잘못 사용해도, 우리가 조금 더 방어적인 자세로 만들수 있도록 해주는 것이 Getter와 Setter이다.
+
+```js
+class User {
+  constructor(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+
+  get age() {
+    return this.age;
+  }
+
+  set age(value) {
+    this.age = value;
+  }
+}
+```
+
+- getter를 정의 하는 순간, constructor의 `this.age`는 메모리에 있는 값을 읽어오는 것이 아니라 getter를 바로 호출하게 된다.
+
+- setter를 정의 하는 순간, constructor의 `= age`을 호출할 때(값을 할당할 때) 바로 메모리에 할당하는 것이 아니라 setter를 호출하게 된다.
+
+  - setter 안에서 전달된 value를 `this.age`에 할당할 때, 메모리에 값을 업데이트 하는 것이 아니라 setter를 호출하게 된다.  (무한 반복에 빠지게 된다.) => `Maximum call stack size exceeded`
+
+- getter와 setter 내의 변수를 조금 다르게 적어줘야 한다.
+
+  ```js
+  get age() {
+      return this._age;
+    }
+  
+    set age(value) {
+      this._age = value;
+    }
+  ```
+
+- User 클래스 내에는 고로, `firstName`, `lastName`, `_age` 세 개의 필드가 존재한다.
+
+- 이제 setter가 있기 때문에 다음과 같이 방어할 수 있다.
+
+  ```js
+  set age(value) {
+      if (value < 0) {
+        throw Error('age can not be negative');
+      }
+      this._age = value;
+    }
+  ```
+
+  
+
+
+
+## 14. Fields (public vs. private)
+
+> 최근에 추가된 js 문법
+>
+> 너무 최신 문법이라, 아직 적용 안되는 브라우저도 많음 (쓰려면 Babel을 써야 한다.)
+
+- **public**
+  - 그냥 일반적인 필드 선언
+  - 외부에서 접근 가능
+- **private**
+  - `#` 기호를 붙여서 선언
+  - 내부에서만 접근 가능
+
+
+
+
+
+## 15. Static
+
+- Object와 상관없이, class 고유의 값과 메서드가 있을 수 있다.
+- `static` 을 붙여서 선언.
+- static 요소는 Object로는 접근할 수 없다. (undefined)
+
+
+
+
+
+## 16. instanceof
+
+> `object instanceof class`
+
+- 해당 object가 특정 class의 instance인지 아닌지 여부를 확인
+
+  - true or false
+
+  - `Object` : 우리가 사용하는 모든 class들은 javascript `Object` class를 상속받아 만들어 진 것임을 유의
+
+    ```js
+    console.log(triangle instanceof Object); // true
+    ```
+
+    
+
+
+
+## 17. object
+
+- js는 **dynamically type language**
+  - 동적으로 type이 runtime때 결정되는 언어 (Runtime: 프로그램이 동작하고 있을때)
+  - 뒤늦게 object에 하나의 property를 **추가/삭제**할 수 있다. (가급적이면 피할 것, 유지보수 어렵다.)
+
+
+
+- `object.assign`
+
+  ```js
+  const fruit1 = { color: 'red' };
+  const fruit2 = { color: 'blue', size: 'big' };
+  const mixed = Object.assign({}, fruit1, fruit2);
+  console.log(mixed.color); // blue
+  console.log(mixed.size); // big
+  ```
+
+  - fruit2가 fruit1을 덮어 씌운다.
+  - 뒤쪽에 있는 인자가 앞에 있는 인자를 덮어 씌우는 구조.
