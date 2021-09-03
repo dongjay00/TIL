@@ -1,6 +1,6 @@
-# Javascript
+# JavaScript
 
-> 헷갈리는 Javascript 개념 연습장
+> 헷갈리는 JavaScript 개념 연습장
 
 
 
