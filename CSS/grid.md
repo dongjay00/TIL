@@ -144,23 +144,53 @@ grid-auto-columns: 50px;
 
 
 
-## Container - grid-auto-rows, grid-auto-columns
-
-
-
 ## Container - grid-auto-flow
 
+> 위치 자동 배치 알고리즘이 어떻게 동작할지 암시적으로 조절하는 역할
 
+- 아이템들이 흘러가는 방향을 어떤 방향으로 잡을지
+
+- `dense` : 빈 영역을 어떻게든 꽉 채우게 만든다.
+
+  ```css
+  grid-auto-flow: column dense;
+  ```
+
+  
 
 ## Container - grid (shorthand)
+
+- `/` 를 기준으로 앞쪽은 row, 뒤쪽은 column에 대한 내용이다.
+
+  ```css
+  grid: auto-flow / 1fr 1fr 1fr;
+  ```
+
+- 명시적, 암시적 속성은 자유롭게 작성
 
 
 
 ## Container - justify-content, align-content
 
+> 남는 공간을 어떻게 활용하여 배치할지에 대한 속성
+>
+> 컨테이너에 대해 안에 있는 아이템 뭉치들을 어떻게 배치할지
+
+- justify-content
+  - 주축 기준
+- align-content
+  - 교차축 기준
+
 
 
 ## Container - justify-items, align-items
+
+> grid로 만들어진 하나의 틀 내부에서 아이템 각각이 어떻게 배치될지를 결정
+>
+> 전체 아이템에 동시에 적용되는 속성이다.
+
+- 기본값은 `stretch`
+  - 너비 높이를 지정하지 않았다면, grid 한 칸을 꽉 채우고 있으려 한다. 
 
 
 
