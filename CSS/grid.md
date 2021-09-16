@@ -196,25 +196,97 @@ grid-auto-columns: 50px;
 
 ## Item - grid-row, grid-column
 
+> grid-row(column)-start와 grid-row(column)-end의 단축 속성
+
+```css
+/* 앞이 start 뒤가 end */
+.item:first-child {
+ 	grid-row: 1 / -1;   
+  	grid-column: 1 / 3;
+}
+```
+
+- grid-row와 grid-column의 값들은 몇 번째 칸을 의미하는 것이 아니라, 몇 번째 선인지를 의미하는 것이다.
+
+  - 선은 0번째가 아니고 1번째부터 시작한다.
+  - 음수로도 지정이 가능하다. 이 때 -1은 맨 마지막 선을 뜻한다.
+
+- start부터 몇 칸 임을 지정하고 싶다면 span을 이용한다.
+
+  ```css
+  grid-row: 2 / span 2;
+  ```
+
 
 
 ## Item - grid-area
 
+> 영역의 이름을 지정
 
+- grid-template-area에 사용하려고 쓰기도 했다.
+
+- 하지만 본질은 grid-row-start, grid-column-start, grid-row-end, grid-column-end 값을 한번에 설정하는 shorthand이기도 하다. (순서는 위에 써놓은 대로 start 2개 뒤에 end 2개 순이므로 주의!)
+
+  ```css
+  grid-area: 1 / 1 / -1 / 3;
+  ```
+
+  
 
 ## Item - order
+
+> 플렉스 혹은 그리드 컨테이너 안에서 현재 요소의 배치 순서를 지정
+
+- flex에서 설명했던 order와 같은 기능
+  - 값이 작을수록 앞으로 온다.
+  - 정수값만 가능(음수도 가능)
+
+- order가 같다면 markup 순으로 정렬
 
 
 
 ## Item - z-index
 
+> 위치 지정 요소와 그 자손 혹은 하위 아이템의 Z축 순서를 지정
+
+- 더 큰 z-index 요소가 작은 요소 위를 덮는다.
+
 
 
 ## Grid 단위 - fr, min-content, max-content
+
+- fr 
+  - 비율로 나눌 때 사용
+- min-content
+  - content 중 가장 긴 단어에 맞춰서,  그 길이보단 더 이상 줄어들 수 없게 지정한다.
+- max-content
+  - content를 한 줄에 최대한 집어넣어 보여준다.
 
 
 
 ## Grid 단위 - auto-fill, auto-fit
 
+- auto-fill
 
+  - 남는 공간이 생기면, 자동으로 다음 열 혹은 행으로 채워주는 속성
+
+  - 반응형에 있어 중요
+
+  - minmax와의 조합으로 꽉찬 반응형을 구현 할 수 있다.
+
+    ```css
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 50px;
+    ```
+
+- auto-fit
+
+  - 남는 공간을 전부 꽉 채워주는 속성
+
+  - 마찬가지로 minmax와의 조합으로 자주 사용된다.
+
+    ```css 
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 50px;
+    ```
 
