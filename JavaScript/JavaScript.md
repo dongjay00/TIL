@@ -39,7 +39,27 @@
 
 ## 3. hoisting
 
-- 어디에 선언했는가에 상관없이, **선언을 제일 위로 끌어올려줌**
+> 어디에 선언했는가에 상관없이, **선언을 제일 위로 끌어올려줌**
+
+- 코드에 선언된 변수 및 함수를 유효한 범위의 코드 상단으로 끌어 올리는 작업
+
+- `var`의 변수/함수의 선언만 위로 올려지고, **할당은 올려지지 않음**
+
+- `let`, `const` 변수 선언과 함수 표현식에서는 호이스팅 발생하지 않음
+
+  ``` js
+  // using var
+  console.log(name); // output: undefined
+  var name = "john";
+  console.log(name); // output: john
+  
+  // using let/const
+  // ReferenceError: Cannot access 'name_2' before initialization
+  console.log(name_2);
+  let name_2 = "john";
+  ```
+
+  
 
 
 
