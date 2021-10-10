@@ -66,3 +66,22 @@
 | Verb            | 자원에 대한 행위        | HTTP Method          |
 | Representations | 자원에 대한 행위의 내용 | HTTP Message Payload |
 
+
+
+## 제대로 설계하는 REST API
+
+- URL에서는 동사를 사용하지 않는다.
+  - add, edit, delete 같은 단어 쓰지 않는다.
+- 즉 명사를 활용한다.
+  - Collections (+ 고유 식별자) 활용
+  - ex) `/movies` , `/movies/inception`
+- HTTP methods와 결합하여 인터랙션 한다.
+  - ex) GET + `/movies` , DELETE + `/movies/inception`
+  - 이렇게 하면 위와 같은 단 2개의 URL만 가지고, CRUD를 구현할 수 있다.
+- 객체들의 관계 인터랙션을 위해 URL을 사용할 수도 있다.
+  - ex) GET + `/movies/inception/actors`
+
+- 세부적인 것은 query parameter를 활용하자.
+  - ex) `/movies?min_rating=9.8`
+  - 페이지네이션도 적용 가능
+    - ex) `/movies?page=5`
